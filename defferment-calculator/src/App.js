@@ -4,11 +4,11 @@ import InputForm from "./components/InputForm";
 
 function App() {
   const [values, setValues] = useState({
-    principal: '',
-    monthlyInterestRate: '',
-    paymentMonthCount: '',
-    deffermentMonthCount: '',
-    currentPMT: ''
+    principal: 0.0,
+    monthlyInterestRate: 0.0,
+    paymentMonthCount: 0,
+    deffermentMonthCount: 0,
+    currentPMT: 0
   });
 
   const [submittedValues, setSubmittedValues] = useState(null);
