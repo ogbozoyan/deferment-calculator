@@ -1,14 +1,14 @@
 import React, { useState } from "react";
-import Formula from "./components/Formula";
 import InputForm from "./components/InputForm";
+import MortageDeffermentCalculator from "./components/MortageDeffermentCalculator";
 
 function App() {
   const [values, setValues] = useState({
     principal: 0.0,
-    monthlyInterestRate: 0.0,
+    interestRate: 0.0,
     paymentMonthCount: 0,
     deffermentMonthCount: 0,
-    currentPMT: 0
+    deffermentFromMonth: 0
   });
 
   const [submittedValues, setSubmittedValues] = useState(null);
@@ -25,10 +25,10 @@ function App() {
     e.preventDefault();
     setSubmittedValues({
       principal: parseFloat(values.principal),
-      monthlyInterestRate: parseFloat(values.monthlyInterestRate),
+      interestRate: parseFloat(values.interestRate),
       paymentMonthCount: parseInt(values.paymentMonthCount, 10),
       deffermentMonthCount: parseInt(values.deffermentMonthCount, 10),
-      currentPMT: parseFloat(values.currentPMT)
+      deffermentFromMonth: parseFloat(values.deffermentFromMonth)
     });
   };
 
@@ -37,12 +37,12 @@ function App() {
       <InputForm values={values} handleInputChange={handleInputChange} handleSubmit={handleSubmit} />
       {submittedValues &&
         (
-          <Formula
+          <MortageDeffermentCalculator
             principal={submittedValues.principal}
-            monthlyInterestRate={submittedValues.monthlyInterestRate}
+            interestRate={submittedValues.interestRate}
             paymentMonthCount={submittedValues.paymentMonthCount}
             deffermentMonthCount={submittedValues.deffermentMonthCount}
-            currentPMT={submittedValues.currentPMT}
+            deffermentFromMonth={submittedValues.deffermentFromMonth}
           />
         )
       }
