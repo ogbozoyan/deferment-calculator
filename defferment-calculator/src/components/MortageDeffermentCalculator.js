@@ -42,8 +42,8 @@ function MortageDeffermentCalculator({ principal, interestRate, paymentMonthCoun
     return (
 
         <div className="mortage-defferment-calculator-payment-main-div">
-            <p className="mortage-defferment-calculator-formula-payment-before"> Платеж ДО: {paymentBefore} </p>
-            <p className="mortage-defferment-calculator-formula-payment-after"> Платеж ПОСЛЕ: {paymentAfter} </p>
+            <p className="mortage-defferment-calculator-formula-payment-before"> Платеж ДО: {paymentBefore.toFixed(2)} </p>
+            <p className="mortage-defferment-calculator-formula-payment-after"> Платеж ПОСЛЕ: {paymentAfter.toFixed(2)} </p>
         </div>
     );
 }

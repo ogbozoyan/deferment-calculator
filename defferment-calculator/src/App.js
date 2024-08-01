@@ -1,6 +1,7 @@
 import React, { useState } from "react";
 import InputForm from "./components/InputForm";
 import MortageDeffermentCalculator from "./components/MortageDeffermentCalculator";
+import './App.css';
 
 function App() {
   const [values, setValues] = useState({
@@ -40,7 +41,7 @@ function App() {
     e.preventDefault();
     const paymentMonthCount = parseInt(values.loanTermMonths, 10);
     const deffermentFromMonthNumber = calculateDeffermentFromMonth();
-    console.log(deffermentFromMonthNumber)
+
     setSubmittedValues({
       principal: parseFloat(values.principal),
       interestRate: parseFloat(values.interestRate),
@@ -52,7 +53,7 @@ function App() {
   };
 
   return (
-    <div>
+    <div className="app-container">
       <InputForm values={values} handleInputChange={handleInputChange} handleSubmit={handleSubmit} />
       {submittedValues && (
         <MortageDeffermentCalculator

@@ -3,7 +3,7 @@ import Button from "./Button";
 
 function InputForm({ values, handleInputChange, handleSubmit }) {
     return (
-        <form onSubmit={handleSubmit}>
+        <form onSubmit={handleSubmit} className="input-form">
             <label className="input-form-label">
                 Сумма Кредита
                 <input
