@@ -5,7 +5,7 @@ function InputForm({ values, handleInputChange, handleSubmit }) {
     return (
         <form onSubmit={handleSubmit}>
             <label className="input-form-label">
-                Сумма кредита
+                Сумма Кредита
                 <input
                     className="input-field"
                     type="text"
@@ -13,6 +13,16 @@ function InputForm({ values, handleInputChange, handleSubmit }) {
                     value={values.principal}
                     onChange={handleInputChange}
                     placeholder="Principal"
+                />
+            </label>
+            <label className="input-form-label">
+                Дата выдачи кредита
+                <input
+                    className="input-field"
+                    type="date"
+                    name="loanStartDate"
+                    value={values.loanStartDate}
+                    onChange={handleInputChange}
                 />
             </label>
             <label className="input-form-label">
@@ -27,18 +37,18 @@ function InputForm({ values, handleInputChange, handleSubmit }) {
                 />
             </label>
             <label className="input-form-label">
-                Количество платежей
+                Срок кредита (месяц)
                 <input
                     className="input-field"
                     type="text"
-                    name="paymentMonthCount"
-                    value={values.paymentMonthCount}
+                    name="loanTermMonths"
+                    value={values.loanTermMonths}
                     onChange={handleInputChange}
-                    placeholder="Payment Month Count"
+                    placeholder="Loan Term Months"
                 />
             </label>
             <label className="input-form-label">
-                Отсрочку на сколько месяцев
+                Количество месяцев полной отсрочки
                 <input
                     className="input-field"
                     type="text"
@@ -49,19 +59,17 @@ function InputForm({ values, handleInputChange, handleSubmit }) {
                 />
             </label>
             <label className="input-form-label">
-                Отсрочку с какого платежа
+                Дата начала отсрочки
                 <input
                     className="input-field"
-                    type="text"
+                    type="date"
                     name="deffermentFromMonth"
                     value={values.deffermentFromMonth}
                     onChange={handleInputChange}
-                    placeholder="Defferment From Month"
                 />
             </label>
 
             <Button handleClick={handleSubmit}>Узнать новый платёж</Button>
-
         </form>
     );
 }

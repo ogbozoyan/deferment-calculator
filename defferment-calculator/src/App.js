@@ -6,9 +6,10 @@ function App() {
   const [values, setValues] = useState({
     principal: 0.0,
     interestRate: 0.0,
-    paymentMonthCount: 0,
+    loanTermMonths: 0,
     deffermentMonthCount: 0,
-    deffermentFromMonth: 0
+    deffermentFromMonth: '',
+    loanStartDate: ''
   });
 
   const [submittedValues, setSubmittedValues] = useState(null);
@@ -21,31 +22,48 @@ function App() {
     });
   };
 
+  const calculateDeffermentFromMonth = () => {
+    const startDate = new Date(values.loanStartDate);
+    const deffermentDate = new Date(values.deffermentFromMonth);
+
+    const startYear = startDate.getFullYear();
+    const startMonth = startDate.getMonth();
+    const deffermentYear = deffermentDate.getFullYear();
+    const deffermentMonth = deffermentDate.getMonth();
+
+    const monthDiff = (deffermentYear - startYear) * 12 + (deffermentMonth - startMonth);
+
+    return monthDiff + 1; // +1, так как месяцы начинаются с 0
+  };
+
   const handleSubmit = (e) => {
     e.preventDefault();
+    const paymentMonthCount = parseInt(values.loanTermMonths, 10);
+    const deffermentFromMonthNumber = calculateDeffermentFromMonth();
+    console.log(deffermentFromMonthNumber)
     setSubmittedValues({
       principal: parseFloat(values.principal),
       interestRate: parseFloat(values.interestRate),
-      paymentMonthCount: parseInt(values.paymentMonthCount, 10),
+      paymentMonthCount,
       deffermentMonthCount: parseInt(values.deffermentMonthCount, 10),
-      deffermentFromMonth: parseFloat(values.deffermentFromMonth)
+      deffermentFromMonth: deffermentFromMonthNumber,
+      loanStartDate: values.loanStartDate
     });
   };
 
   return (
     <div>
       <InputForm values={values} handleInputChange={handleInputChange} handleSubmit={handleSubmit} />
-      {submittedValues &&
-        (
-          <MortageDeffermentCalculator
-            principal={submittedValues.principal}
-            interestRate={submittedValues.interestRate}
-            paymentMonthCount={submittedValues.paymentMonthCount}
-            deffermentMonthCount={submittedValues.deffermentMonthCount}
-            deffermentFromMonth={submittedValues.deffermentFromMonth}
-          />
-        )
-      }
+      {submittedValues && (
+        <MortageDeffermentCalculator
+          principal={submittedValues.principal}
+          interestRate={submittedValues.interestRate}
+          paymentMonthCount={submittedValues.paymentMonthCount}
+          deffermentMonthCount={submittedValues.deffermentMonthCount}
+          deffermentFromMonth={submittedValues.deffermentFromMonth}
+          loanStartDate={submittedValues.loanStartDate}
+        />
+      )}
     </div>
   );
 }
