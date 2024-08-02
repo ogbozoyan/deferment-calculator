@@ -16,10 +16,20 @@ jobs:
         with:
           node-version: '18.0.0'
 
-      - name: Install dependencies
+      - name: Cache Node modules
+        uses: actions/cache@v2
+        with:
+          path: ~/.npm
+          key: ${{ runner.os }}-node-${{ hashFiles('**/package-lock.json') }}
+          restore-keys: |
+            ${{ runner.os }}-node-
+
+      - name: Clean install dependencies
         run: |
-            npm ci
-            npm run build
+          rm -rf node_modules
+          rm -f package-lock.json
+          npm install
+          npm run build
       
       - name: Deploy
         uses: JamesIves/github-pages-deploy-action@v4
