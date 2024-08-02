@@ -37,6 +37,17 @@ function InputForm({ values, handleInputChange, handleSubmit }) {
                 />
             </label>
             <label className="input-form-label">
+                Платеж
+                <input
+                    className="input-field"
+                    type="text"
+                    name="paymentBefore"
+                    value={values.paymentBefore}
+                    onChange={handleInputChange}
+                    placeholder="Payment before"
+                />
+            </label>
+            <label className="input-form-label">
                 Срок кредита (месяц)
                 <input
                     className="input-field"
@@ -68,7 +79,16 @@ function InputForm({ values, handleInputChange, handleSubmit }) {
                     onChange={handleInputChange}
                 />
             </label>
-
+            <label className="input-form-label">
+                Считать частичную отсрочку ?
+                <input
+                    className="input-field"
+                    type="checkbox"
+                    name="isOnlyInterest"
+                    checked={values.isOnlyInterest}
+                    onChange={handleInputChange}
+                />
+            </label>
             <Button handleClick={handleSubmit}>Узнать новый платёж</Button>
         </form>
     );

@@ -6,20 +6,22 @@ import './App.css';
 function App() {
   const [values, setValues] = useState({
     principal: 0.0,
+    paymentBefore: 0.0,
     interestRate: 0.0,
     loanTermMonths: 0,
     deffermentMonthCount: 0,
     deffermentFromMonth: '',
-    loanStartDate: ''
+    loanStartDate: '',
+    isOnlyInterest: false
   });
 
   const [submittedValues, setSubmittedValues] = useState(null);
 
   const handleInputChange = (e) => {
-    const { name, value } = e.target;
+    const { name, value, type, checked } = e.target;
     setValues({
       ...values,
-      [name]: value
+      [name]: type === 'checkbox' ? checked : value
     });
   };
 
@@ -44,11 +46,13 @@ function App() {
 
     setSubmittedValues({
       principal: parseFloat(values.principal),
+      paymentBefore: parseFloat(values.paymentBefore),
       interestRate: parseFloat(values.interestRate),
       paymentMonthCount,
       deffermentMonthCount: parseInt(values.deffermentMonthCount, 10),
       deffermentFromMonth: deffermentFromMonthNumber,
-      loanStartDate: values.loanStartDate
+      loanStartDate: values.loanStartDate,
+      isOnlyInterest: values.isOnlyInterest
     });
   };
 
@@ -59,10 +63,12 @@ function App() {
         <MortageDeffermentCalculator
           principal={submittedValues.principal}
           interestRate={submittedValues.interestRate}
+          paymentBefore={submittedValues.paymentBefore}
           paymentMonthCount={submittedValues.paymentMonthCount}
           deffermentMonthCount={submittedValues.deffermentMonthCount}
           deffermentFromMonth={submittedValues.deffermentFromMonth}
           loanStartDate={submittedValues.loanStartDate}
+          isOnlyInterest={submittedValues.isOnlyInterest}
         />
       )}
     </div>
