@@ -5,24 +5,14 @@ function InputForm({ values, handleInputChange, handleSubmit }) {
     return (
         <form onSubmit={handleSubmit} className="input-form">
             <label className="input-form-label">
-                Сумма Кредита
+                Остаток суммы задолженности
                 <input
                     className="input-field"
                     type="text"
                     name="principal"
                     value={values.principal}
                     onChange={handleInputChange}
-                    placeholder="Principal"
-                />
-            </label>
-            <label className="input-form-label">
-                Дата выдачи кредита
-                <input
-                    className="input-field"
-                    type="date"
-                    name="loanStartDate"
-                    value={values.loanStartDate}
-                    onChange={handleInputChange}
+                    placeholder="Остаток суммы задолженности"
                 />
             </label>
             <label className="input-form-label">
@@ -33,7 +23,7 @@ function InputForm({ values, handleInputChange, handleSubmit }) {
                     name="interestRate"
                     value={values.interestRate}
                     onChange={handleInputChange}
-                    placeholder="Interest Rate"
+                    placeholder="Процентная ставка"
                 />
             </label>
             <label className="input-form-label">
@@ -44,18 +34,18 @@ function InputForm({ values, handleInputChange, handleSubmit }) {
                     name="paymentBefore"
                     value={values.paymentBefore}
                     onChange={handleInputChange}
-                    placeholder="Payment before"
+                    placeholder="Платеж"
                 />
             </label>
             <label className="input-form-label">
-                Срок кредита (месяц)
+                Остаток месяцев платежей
                 <input
                     className="input-field"
                     type="text"
-                    name="loanTermMonths"
-                    value={values.loanTermMonths}
+                    name="leftMonthCount"
+                    value={values.leftMonthCount}
                     onChange={handleInputChange}
-                    placeholder="Loan Term Months"
+                    placeholder="Остаток месяцев платежей"
                 />
             </label>
             <label className="input-form-label">
@@ -66,17 +56,7 @@ function InputForm({ values, handleInputChange, handleSubmit }) {
                     name="deffermentMonthCount"
                     value={values.deffermentMonthCount}
                     onChange={handleInputChange}
-                    placeholder="Defferment Month Count"
-                />
-            </label>
-            <label className="input-form-label">
-                Дата начала отсрочки
-                <input
-                    className="input-field"
-                    type="date"
-                    name="deffermentFromMonth"
-                    value={values.deffermentFromMonth}
-                    onChange={handleInputChange}
+                    placeholder="Количество месяцев полной отсрочки"
                 />
             </label>
             <label className="input-form-label">

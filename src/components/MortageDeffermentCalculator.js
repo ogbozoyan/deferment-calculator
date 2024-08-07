@@ -1,6 +1,6 @@
 import React from "react";
 
-function MortageDeffermentCalculator({ principal, interestRate, paymentBefore, paymentMonthCount, deffermentMonthCount, deffermentFromMonth, isOnlyInterest }) {
+function MortageDeffermentCalculator({ principal, interestRate, paymentBefore, deffermentMonthCount, leftMonthCount, isOnlyInterest }) {
 
     var paymentAfter;
     var monthlyInterestRate = interestRate / 100 / 12
@@ -10,35 +10,29 @@ function MortageDeffermentCalculator({ principal, interestRate, paymentBefore, p
 
         const p = principal
         const r = monthlyInterestRate
-        const n = paymentMonthCount
+        const n = leftMonthCount
         const d = deffermentMonthCount
-        const x = deffermentFromMonth
+
 
         const pmtBefore = paymentBefore
-        const leftPayments = n - x - d
+        const newPmtDivederPow = -(n - d + 1)
+        const i_d = p * r * d
+        const pNew = p + i_d
 
-        const rX = Math.pow(1 + r, x)
-        const p_x = (p * rX) - (pmtBefore * ((rX - 1) / r))
-        const pNew = p_x * Math.pow(1 + r, d)
-
-        return (pNew * r) / (1 - Math.pow(1 + r, -leftPayments))
+        return (pNew * r) / (1 - Math.pow(1 + r, newPmtDivederPow));
     }
 
     function calculatePMTAfterOnlyInterest() {
+
         const p = principal
         const r = monthlyInterestRate
-        const n = paymentMonthCount
+        const n = leftMonthCount
         const d = deffermentMonthCount
-        const x = deffermentFromMonth
 
         const pmtBefore = paymentBefore
-        const leftPayments = n - x - d
 
-        const rX = Math.pow(1 + r, x)
-        const p_x = (p * rX) - (pmtBefore * ((rX - 1) / r))
-        const i_d = p_x * r
 
-        return (i_d) / (1 - Math.pow(1 + r, -leftPayments))
+        return null;
     }
 
     if (isOnlyInterest) {
@@ -50,6 +44,7 @@ function MortageDeffermentCalculator({ principal, interestRate, paymentBefore, p
     return (
         <div className="mortage-defferment-calculator-payment-main-div">
             <p className="mortage-defferment-calculator-formula-payment-after"> Новый Платеж: {paymentAfter.toFixed(2)} </p>
+            <p className="mortage-defferment-calculator-formula-payment-after"> Переплата: {(paymentAfter.toFixed(2) - paymentBefore.toFixed(2)).toFixed(2)} </p>
         </div>
     );
 }
