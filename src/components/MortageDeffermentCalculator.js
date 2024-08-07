@@ -14,7 +14,6 @@ function MortageDeffermentCalculator({ principal, interestRate, paymentBefore, d
         const d = deffermentMonthCount
 
 
-        const pmtBefore = paymentBefore
         const newPmtDivederPow = -(n - d + 1)
         const i_d = p * r * d
         const pNew = p + i_d
