@@ -23,15 +23,6 @@ function MortageDeffermentCalculator({ principal, interestRate, paymentBefore, d
     }
 
     function calculatePMTAfterOnlyInterest() {
-
-        const p = principal
-        const r = monthlyInterestRate
-        const n = leftMonthCount
-        const d = deffermentMonthCount
-
-        const pmtBefore = paymentBefore
-
-
         return null;
     }
 
