@@ -25,7 +25,10 @@ function MortageDeffermentCalculator({ principal, interestRate, paymentBefore, d
         const p = principal
         const r = monthlyInterestRate
 
-        return (p * r) / (1 - Math.pow(1 + r, -(25 - 3)));
+        const n = leftMonthCount
+        const d = deffermentMonthCount
+
+        return (p * r) / (1 - Math.pow(1 + r, -(n - d)));
     }
 
     if (isOnlyInterest) {
