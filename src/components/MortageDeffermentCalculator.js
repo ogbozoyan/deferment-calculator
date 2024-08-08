@@ -22,7 +22,10 @@ function MortageDeffermentCalculator({ principal, interestRate, paymentBefore, d
     }
 
     function calculatePMTAfterOnlyInterest() {
-        return null;
+        const p = principal
+        const r = monthlyInterestRate
+
+        return (p * r) / (1 - Math.pow(1 + r, -(25 - 3)));
     }
 
     if (isOnlyInterest) {
